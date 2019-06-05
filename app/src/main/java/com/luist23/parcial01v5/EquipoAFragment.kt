@@ -30,6 +30,7 @@ class EquipoAFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? =  inflater.inflate(R.layout.fragment_equipo_a, container, false).apply {
         tv_teamA_name.text = name
+        tv_score_team_a.text = PartidoViewModel.scoreA.value.toString()
     }
 
 
