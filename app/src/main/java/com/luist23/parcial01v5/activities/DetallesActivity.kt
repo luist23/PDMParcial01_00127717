@@ -20,7 +20,7 @@ class DetallesActivity () : AppCompatActivity() {
         teamAFragment = DetallesFragment.newInstance(
             v.equipoA,v.equipoB,v.puntosA,
             v.puntosB,v.fecha,v.ganador)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_team_a,teamAFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.detalle_fragment_reserved,teamAFragment).commit()
 
 
     }

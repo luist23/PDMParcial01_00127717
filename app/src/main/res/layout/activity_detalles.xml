@@ -6,5 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.DetallesActivity">
+    <FrameLayout android:id="@+id/detalle_fragment_reserved" android:layout_width="match_parent" android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
