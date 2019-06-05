@@ -29,15 +29,23 @@ class NewPartidoActivity : AppCompatActivity() {
                 Toast.makeText(this,"no se completaron todos los campos",Toast.LENGTH_LONG).show()
             }
             else{
-                val intent = Intent(this@NewPartidoActivity,PartidoActivity::class.java)
+                //val intent = Intent(this@NewPartidoActivity,PartidoActivity::class.java)
 
-                intent.putExtra("equipoA", et_equipo_A.text.toString())
-                intent.putExtra("equipoB", et_equipo_A.text.toString())
-                intent.putExtra("año", et_fecha_año.text.toString())
-                intent.putExtra("dia", et_fecha_dia.text.toString())
-                intent.putExtra("hora", et_fecha_hora.text.toString())
-                intent.putExtra("mes", et_fecha_mes.text.toString())
-                intent.putExtra("minutos", et_fecha_minutos.text.toString())
+                PartidoViewModel.teamA.value = et_equipo_A.text.toString()
+                PartidoViewModel.teamB.value = et_equipo_B.text.toString()
+                PartidoViewModel.fecha.value = Date(et_fecha_año.text.toString().toInt(),et_fecha_mes.text.toString().toInt()
+                    ,et_fecha_dia.text.toString().toInt(),et_fecha_hora.text.toString().toInt(),et_fecha_minutos.text.toString().toInt()).time.toInt()
+
+                PartidoViewModel.scoreA.value = 0
+                PartidoViewModel.scoreB.value = 0
+
+
+                //setResult(Activity.RESULT_OK, Intent())
+
+
+                //finish()
+                var intent = Intent(this@NewPartidoActivity,PartidoActivity::class.java
+                )
 
                 startActivityForResult(intent, MainActivity.newPartidoActivityRequestCode)
 
@@ -51,7 +59,8 @@ class NewPartidoActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        setResult(Activity.RESULT_OK, intent)
+
+        setResult(Activity.RESULT_OK, Intent())
 
         finish()
     }

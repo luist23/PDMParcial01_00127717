@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".DetallesFragment">
+
+<LinearLayout android:layout_width="match_parent" android:gravity="center" android:layout_marginTop="20sp" android:textAlignment="center" android:orientation="vertical" android:layout_height="match_parent">
+    <TextView android:id="@+id/det_team_a" android:textSize="25sp" android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:text="eq1" android:textAlignment="center" android:layout_marginTop="20sp"/>
+    <TextView  android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="vs" android:textAlignment="center" android:layout_marginTop="20sp"/>
+    <TextView android:id="@+id/det_team_b" android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="eq1" android:textSize="25sp" android:textAlignment="center" android:layout_marginTop="20sp"/>
+
+    <LinearLayout android:layout_marginTop="20sp" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/det_team_a_score" android:textSize="40sp" android:layout_width="0sp" android:layout_height="wrap_content"
+                  android:text="eq1_score"  android:layout_marginRight="20sp" android:layout_weight="1"
+                  android:gravity="end"/>
+        <TextView android:layout_width="wrap_content" android:textSize="40sp" android:layout_height="wrap_content"
+                  android:text="  -  " android:textAlignment="center"/>
+        <TextView android:id="@+id/det_team_b_score"  android:textSize="40sp" android:layout_width="0sp" android:layout_height="wrap_content"
+                  android:text="eq1_score" android:layout_marginRight="20sp" android:layout_weight="1"
+        android:gravity="start"/>
+    </LinearLayout>
+
+    <TextView android:layout_marginTop="20sp"  android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="Ganador:" android:textAlignment="center"/>
+    <TextView android:id="@+id/det_team_win" android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="ganador" android:textAlignment="center"/>
+
+    <TextView android:layout_marginTop="20sp"  android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="Fecha:" android:textAlignment="center"/>
+    <LinearLayout android:layout_width="match_parent" android:gravity="center" android:layout_height="wrap_content">
+        <TextView android:id="@+id/det_dia" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="dia" android:textAlignment="center"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text=" / " android:textAlignment="center"/>
+        <TextView android:id="@+id/det_mes" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="mes" android:textAlignment="center"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text=" / " android:textAlignment="center"/>
+        <TextView android:id="@+id/det_año" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="año" android:textAlignment="center"/>
+    </LinearLayout>
+
+    <TextView android:layout_marginTop="20sp" android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:text="Hora:" android:textAlignment="center"/>
+    <LinearLayout android:layout_width="match_parent" android:gravity="center" android:layout_height="wrap_content">
+        <TextView android:id="@+id/det_hora" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="hora" android:textAlignment="center"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text=" : " android:textAlignment="center"/>
+        <TextView android:id="@+id/det_minuto" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="minuto" android:textAlignment="center"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text=" / " android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <Button android:id="@+id/ok_detalles" android:layout_marginTop="20sp"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OK"/>
+
+
+
+</LinearLayout>
+
+</FrameLayout>

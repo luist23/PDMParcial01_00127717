@@ -19,5 +19,5 @@
     <string name="text_team_a">teamA</string>
     <string name="action_3_points">+3</string>
     <string name="action_2_points">+2</string>
-    <string name="action_free_throw">+1</string>
+    <string name="action_free_throw">+ 1</string>
 </resources>

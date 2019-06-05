@@ -7,33 +7,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.luist23.parcial01v5.viewmodels.PartidoViewModel
 import kotlinx.android.synthetic.main.fragment_equipo_a.*
+import kotlinx.android.synthetic.main.fragment_equipo_a.bt_team_a_2_p
+import kotlinx.android.synthetic.main.fragment_equipo_a.bt_team_a_3_p
+import kotlinx.android.synthetic.main.fragment_equipo_a.bt_team_a_free_throw
+import kotlinx.android.synthetic.main.fragment_equipo_a.tv_score_team_a
+import kotlinx.android.synthetic.main.fragment_equipo_a.tv_teamA_name
+import kotlinx.android.synthetic.main.fragment_equipo_a.view.*
+import kotlinx.android.synthetic.main.partido_cardview.view.*
 
 
-class EquipoAFragment : Fragment() {
+class EquipoAFragment() : Fragment() {
     var score: Int? = null
     private var name: String? = null
+    //private var listener: DetallesFragment.OnFragmentInteractionListener? = null
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        bt_team_a_free_throw.setOnClickListener {
-            score?.plus(1)
-            tv_score_team_a.text= score.toString()
-        }
-        bt_team_a_2_p.setOnClickListener {
-            score?.plus(2)
-            tv_score_team_a.text= score.toString()
-        }
-        bt_team_a_3_p.setOnClickListener {
-            score?.plus(3)
-            tv_score_team_a.text= score.toString()
-        }
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_equipo_a, container, false)
+    ): View? =  inflater.inflate(R.layout.fragment_equipo_a, container, false).apply {
+        tv_teamA_name.text = name
     }
 
 

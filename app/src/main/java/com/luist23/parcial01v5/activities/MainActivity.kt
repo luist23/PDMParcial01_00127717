@@ -9,22 +9,26 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
-import androidx.lifecycle.LifecycleOwner
+import androidx.annotation.NonNull
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.lifecycle.*
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.luist23.parcial01v5.EquipoAFragment
 import com.luist23.parcial01v5.R
 import com.luist23.parcial01v5.adapters.PartidoAdapter
 import com.luist23.parcial01v5.database.entities.Partido
 import com.luist23.parcial01v5.viewmodels.PartidoViewModel
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.fragment_equipo_a.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LifecycleOwner {
+    lateinit var mLifecycleRegistry : Lifecycle
 
     lateinit var adapter: PartidoAdapter
     lateinit var viewModel:PartidoViewModel
@@ -32,6 +36,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mLifecycleRegistry = LifecycleRegistry(this)
+        //mLifecycleRegistry.markState(Lifecycle.State.CREATED)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -58,9 +64,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    companion object{
+
+
+    companion object {
         const val newPartidoActivityRequestCode = 1
+
+        /*fun detallesAdapterStart(partido : Partido){
+            //var Intent = Intent(this,DetallesActivity::class.java)
+        }*/
     }
+
 
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -115,7 +128,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun bind(){
-        adapter= PartidoAdapter(ArrayList())
+        adapter= PartidoAdapter(ArrayList(),{
+            val intent = Intent(this@MainActivity, DetallesActivity(it)::class.java)
+            startActivity(intent)
+        })
         viewModel = ViewModelProviders.of(this).get(PartidoViewModel::class.java)
         rv_repo.apply {
             adapter=this@MainActivity.adapter
@@ -124,6 +140,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel.nuke()
         viewModel.getAll().observe(this, Observer {
             adapter.updateList(it)
+
         })
 
         /*btn_add.setOnClickListener {
@@ -135,23 +152,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if(requestCode == newPartidoActivityRequestCode && resultCode == Activity.RESULT_OK){
             data?.let {
-                var fecha = Date(intent.getStringExtra("año").toInt(),
+                /*var fecha = Date(intent.getStringExtra("año").toInt(),
                     intent.getStringExtra("mes").toInt(),intent.getStringExtra("dia").toInt(),
-                    intent.getStringExtra("hora").toInt(),intent.getStringExtra("minutos").toInt())
-                var ganador = if (intent.getStringExtra("scoreA").toInt() > intent.getStringExtra("scoreB").toInt()){
-                    intent.getStringExtra("equipoA")
+                    intent.getStringExtra("hora").toInt(),intent.getStringExtra("minutos").toInt())*/
+                PartidoViewModel.win.value = if (PartidoViewModel.scoreA.value.toString().toInt() > PartidoViewModel.scoreB.value.toString().toInt()){
+                    PartidoViewModel.teamA.value.toString()
+                }else if(PartidoViewModel.scoreA.value.toString().toInt() == PartidoViewModel.scoreB.value.toString().toInt()) {
+                    "Empate"
                 }else{
-                    intent.getStringExtra("equipoB")
+                    PartidoViewModel.teamB.value.toString()
                 }
-                var partido = Partido(adapter.itemCount,intent.getStringExtra("equipoA"),
-                    intent.getStringExtra("equipoB"),intent.getStringExtra("scoreA").toInt(),
-                    intent.getStringExtra("scoreB").toInt(),
-                    fecha.time.toInt(),ganador)
+
+                var partido = Partido(adapter.itemCount + 1,PartidoViewModel.teamA.value.toString(),
+                    PartidoViewModel.teamB.value.toString(),PartidoViewModel.scoreA.value.toString().toInt(),
+                    PartidoViewModel.scoreB.value.toString().toInt(),
+                    PartidoViewModel.fecha.value.toString().toInt(),PartidoViewModel.win.value.toString())
                 //partido.equipoA=
                 viewModel.insert(partido)
             }
         }
+
     }
+
+    override fun getLifecycle(): Lifecycle {
+        return mLifecycleRegistry
+    }
+
+
+
+
+
 }
 
 

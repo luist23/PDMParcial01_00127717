@@ -16,7 +16,7 @@ interface PartidoDao {
     @Query("SELECT*FROM partidos")
     fun getAllPartidos(): LiveData<List<Partido>>
 
-    @Query("SELECT*FROM partidos")
+    @Query("SELECT*FROM partidos where id=:id")
     fun getPartido(id:Int): LiveData<List<Partido>>
 
     @Query("DELETE FROM partidos")

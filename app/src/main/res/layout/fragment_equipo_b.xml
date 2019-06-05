@@ -3,9 +3,10 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".EquipoAFragment">
+             tools:context=".EquipoBFragment">
 
     <LinearLayout
+            android:id="@+id/prueba_solve"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -13,7 +14,7 @@
             android:orientation="vertical">
 
         <TextView
-                android:id="@+id/tv_teamA_name"
+                android:id="@+id/tv_team_name_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -21,7 +22,7 @@
                 android:textStyle="bold" />
 
         <TextView
-                android:id="@+id/tv_score_team_a"
+                android:id="@+id/tv_score_team_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_gap"
@@ -31,27 +32,27 @@
 
 
         <Button
-                android:id="@+id/bt_team_a_3_p"
+                android:id="@+id/bt_team_b_3_p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_gap"
-                android:onClick="threeA"
+                android:onClick="threeB"
                 android:text="@string/action_3_points" />
 
         <Button
-                android:id="@+id/bt_team_a_2_p"
+                android:id="@+id/bt_team_b_2_p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_gap"
-                android:onClick="twoA"
+                android:onClick="twoB"
                 android:text="@string/action_2_points" />
 
         <Button
-                android:id="@+id/bt_team_a_free_throw"
+                android:id="@+id/bt_team_b_free_throw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_gap"
-                android:onClick="free_throw"
+                android:onClick="free_throwB"
                 android:text="@string/action_free_throw" />
 
     </LinearLayout>

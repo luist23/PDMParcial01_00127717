@@ -3,6 +3,7 @@ package com.luist23.parcial01v5.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.luist23.parcial01v5.database.RoomDB
 import com.luist23.parcial01v5.database.entities.Partido
@@ -13,6 +14,16 @@ import kotlinx.coroutines.launch
 class PartidoViewModel (private val app: Application): AndroidViewModel(app) {
 
     private val repository:PartidoRepository
+
+    companion object{
+        val teamA : MutableLiveData<String> = MutableLiveData()
+        val teamB : MutableLiveData<String> = MutableLiveData()
+        val fecha : MutableLiveData<Int> = MutableLiveData()
+        val scoreA : MutableLiveData<Int> = MutableLiveData()
+        val scoreB : MutableLiveData<Int> = MutableLiveData()
+        val win : MutableLiveData<String> = MutableLiveData()
+    }
+
 
     init{
         val partidoDao= RoomDB.getInstance(app).partidoDao()
