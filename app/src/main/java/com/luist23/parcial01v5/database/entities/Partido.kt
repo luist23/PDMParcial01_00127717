@@ -10,7 +10,7 @@ data class Partido(
 
     @PrimaryKey
     @field:Json(name="id")
-    val id: Long,
+    val id: Int,
 
     @ColumnInfo(name="equipoA")
     @field:Json(name = "equipoA")

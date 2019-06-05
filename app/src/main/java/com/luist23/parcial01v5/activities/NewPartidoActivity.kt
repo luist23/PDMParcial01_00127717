@@ -21,11 +21,15 @@ class NewPartidoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_partido)
 
         bt_iniciar_partido.setOnClickListener {
+
+
+
+
             if(et_equipo_A.text.isEmpty() or et_equipo_B.text.isEmpty() or et_fecha_año.text.isEmpty() or et_fecha_dia.text.isEmpty() or et_fecha_hora.text.isEmpty() or et_fecha_mes.text.isEmpty() or et_fecha_minutos.text.isEmpty()){
                 Toast.makeText(this,"no se completaron todos los campos",Toast.LENGTH_LONG).show()
             }
             else{
-                val intent = Intent()
+                val intent = Intent(this@NewPartidoActivity,PartidoActivity::class.java)
 
                 intent.putExtra("equipoA", et_equipo_A.text.toString())
                 intent.putExtra("equipoB", et_equipo_A.text.toString())
@@ -35,13 +39,21 @@ class NewPartidoActivity : AppCompatActivity() {
                 intent.putExtra("mes", et_fecha_mes.text.toString())
                 intent.putExtra("minutos", et_fecha_minutos.text.toString())
 
-                setResult(Activity.RESULT_OK, intent)
+                startActivityForResult(intent, MainActivity.newPartidoActivityRequestCode)
 
-                finish()
+
 
             }
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        setResult(Activity.RESULT_OK, intent)
+
+        finish()
     }
 
 

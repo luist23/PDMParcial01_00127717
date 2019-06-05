@@ -18,8 +18,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.luist23.parcial01v5.R
 import com.luist23.parcial01v5.adapters.PartidoAdapter
+import com.luist23.parcial01v5.database.entities.Partido
 import com.luist23.parcial01v5.viewmodels.PartidoViewModel
 import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, LifecycleOwner {
 
@@ -132,7 +135,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if(requestCode == newPartidoActivityRequestCode && resultCode == Activity.RESULT_OK){
             data?.let {
-                //viewModel.insert(Book(it.getStringExtra("Title"), it.getStringExtra("Edition").toInt(), it.getStringExtra("ISBN"),it.getStringExtra("Resumen"),it.getStringExtra("Cover"), 1))
+                var fecha = Date(intent.getStringExtra("año").toInt(),
+                    intent.getStringExtra("mes").toInt(),intent.getStringExtra("dia").toInt(),
+                    intent.getStringExtra("hora").toInt(),intent.getStringExtra("minutos").toInt())
+                var ganador = if (intent.getStringExtra("scoreA").toInt() > intent.getStringExtra("scoreB").toInt()){
+                    intent.getStringExtra("equipoA")
+                }else{
+                    intent.getStringExtra("equipoB")
+                }
+                var partido = Partido(adapter.itemCount,intent.getStringExtra("equipoA"),
+                    intent.getStringExtra("equipoB"),intent.getStringExtra("scoreA").toInt(),
+                    intent.getStringExtra("scoreB").toInt(),
+                    fecha.time.toInt(),ganador)
+                //partido.equipoA=
+                viewModel.insert(partido)
             }
         }
     }
