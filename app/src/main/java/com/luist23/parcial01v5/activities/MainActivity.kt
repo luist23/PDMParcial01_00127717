@@ -1,5 +1,7 @@
 package com.luist23.parcial01v5.activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.core.view.GravityCompat
@@ -31,9 +33,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
-        /*fab.setOnClickListener { view ->
-            adapter.updateList()
-        }*/
+        fab.setOnClickListener { view ->
+            //adapter.updateList()
+            val intent = Intent(this@MainActivity, NewPartidoActivity::class.java)
+            startActivityForResult(intent, newPartidoActivityRequestCode)
+        }
+
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
@@ -47,6 +52,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView.setNavigationItemSelectedListener(this)
 
         bind()
+
+    }
+
+    companion object{
+        const val newPartidoActivityRequestCode = 1
     }
 
     override fun onBackPressed() {
@@ -116,6 +126,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         /*btn_add.setOnClickListener {
             viewModel.insert(GithubRepo((et_repo.text.toString())))
         }*/
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == newPartidoActivityRequestCode && resultCode == Activity.RESULT_OK){
+            data?.let {
+                //viewModel.insert(Book(it.getStringExtra("Title"), it.getStringExtra("Edition").toInt(), it.getStringExtra("ISBN"),it.getStringExtra("Resumen"),it.getStringExtra("Cover"), 1))
+            }
+        }
     }
 }
 
