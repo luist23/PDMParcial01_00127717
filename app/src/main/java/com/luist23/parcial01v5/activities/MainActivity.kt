@@ -129,7 +129,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun bind(){
         adapter= PartidoAdapter(ArrayList(),{
-            val intent = Intent(this@MainActivity, DetallesActivity(it)::class.java)
+            PartidoViewModel.partido.value = it
+            val intent = Intent(this@MainActivity, DetallesActivity()::class.java)
             startActivity(intent)
         })
         viewModel = ViewModelProviders.of(this).get(PartidoViewModel::class.java)
