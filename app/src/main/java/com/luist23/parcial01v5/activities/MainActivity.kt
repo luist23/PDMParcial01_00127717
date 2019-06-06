@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             adapter=this@MainActivity.adapter
             layoutManager= LinearLayoutManager(this@MainActivity)
         }
-        viewModel.nuke()
+        //viewModel.nuke()
         viewModel.getAll().observe(this, Observer {
             adapter.updateList(it)
 
