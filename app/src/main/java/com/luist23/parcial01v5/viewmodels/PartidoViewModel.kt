@@ -22,6 +22,7 @@ class PartidoViewModel (private val app: Application): AndroidViewModel(app) {
         val scoreA : MutableLiveData<Int> = MutableLiveData()
         val scoreB : MutableLiveData<Int> = MutableLiveData()
         val win : MutableLiveData<String> = MutableLiveData()
+        val partido : MutableLiveData<Partido> = MutableLiveData()
     }
 
 
